@@ -89,24 +89,13 @@ const incidentTrends = async (start: number, end: number) => {
           iyear: { $gte: start, $lte: end },
         },
       },
-      // {
-      //   $project: {
-      // iyears: `${start}-${end}`,
-      //   },
-      // },
+
       {
         $group: {
           _id: "$attacktype1_txt",
           total: { $sum: { $sum: ["$nkill", "$nwound"] } },
         },
       },
-      // {
-      //   $project: {
-      //     _id: "$_id",
-      //     total: "$total",
-      //     iyears: "$iyears",
-      //   },
-      // },
       {
         $sort: { total: -1 },
       },
