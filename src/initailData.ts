@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import User from "./models/usersModel"; // Your User model
 import Terror from "./models/terrorismModel";
 import { log } from "console";
-
+import json from "../data/";
 /**
  * Encrypts passwords for all users in the provided data array.
  * @param userData - Array of user objects containing plaintext passwords.
@@ -21,11 +21,11 @@ async function encryptPasswords(userData: any[]) {
   );
 }
 async function loadInitialData() {
-  const userData = JSON.parse(fs.readFileSync("./data/users.json", "utf8"));
+  const userData = JSON.parse(fs.readFileSync("../data/users.json", "utf8"));
   console.log(1);
 
   const terrorData = JSON.parse(
-    fs.readFileSync("./data/terrorism.json", "utf8")
+    fs.readFileSync("../data/terrorism.json", "utf8")
   );
   console.log(2);
 
