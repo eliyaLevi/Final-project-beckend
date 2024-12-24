@@ -171,6 +171,42 @@ const deadliestRegions = async (nameGroup: string) => {
   }
 };
 
+const patchTarror = async (terrorId: string, updateData: Partial<ITerror>) => {
+  try {
+    const existingTerror = await terrorismModel.findById(terrorId);
+    if (!existingTerror) {
+      throw new Error("terror not found");
+    }
+
+    const updatedTerror = await terrorismModel.findByIdAndUpdate(
+      terrorId,
+      {
+        ...updateData,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    return updatedTerror;
+  } catch (error: any) {
+    return handleBadRequest("MongoDB", error);
+  }
+};
+
+const deleteTerror = async (terrorId: string) => {
+  try {
+    const deletedTerror = await terrorismModel.findByIdAndDelete(terrorId);
+    if (!deletedTerror) {
+      throw new Error("terror not found");
+    }
+    return { message: "terror deleted successfully" };
+  } catch (error: any) {
+    return handleBadRequest("MongoDB", error);
+  }
+};
+
 const getTerrorsByCall = async (page: number = 1, limit: number = 200) => {
   try {
     const skip = (page - 1) * limit;
@@ -197,4 +233,6 @@ export {
   topGroupsbyRegion,
   groupsByYear,
   deadliestRegions,
+  deleteTerror,
+  patchTarror,
 };

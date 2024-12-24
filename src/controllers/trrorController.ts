@@ -3,11 +3,13 @@ import { handleError } from "../../utils/ErrorHandle";
 import {
   addTrror,
   deadliestRegions,
+  deleteTerror,
   getAllTrrors,
   getTerrorEventsByBigCasualtiesService,
   getTerrorsByCall,
   groupsByYear,
   incidentTrends,
+  patchTarror,
   topGroupsbyRegion,
   trrorsByRegionEndAggregate,
 } from "../services/trrorService";
@@ -125,5 +127,23 @@ router.get(
     }
   }
 );
+
+router.patch("/:id", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const updatedTerror = await patchTarror(req.params.id, req.body);
+    res.json(updatedTerror);
+  } catch (error: any) {
+    handleError(res, error.status || 404, error.message);
+  }
+});
+
+router.delete("/:id", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const deletedTerror = await deleteTerror(req.params.id);
+    res.json(deletedTerror);
+  } catch (error: any) {
+    handleError(res, error.status || 404, error.message);
+  }
+});
 
 export default router;
