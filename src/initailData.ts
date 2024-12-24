@@ -19,6 +19,8 @@ async function encryptPasswords(userData: any[]) {
     })
   );
 }
+console.log(2);
+
 async function loadInitialData() {
   const userData = JSON.parse(fs.readFileSync("../data/users.json", "utf8"));
   console.log(1);
