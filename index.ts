@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import chalk from "chalk";
-import loadInitialData from "./src/initailData";
+// import loadInitialData from "./src/initailData";
 import { Server } from "socket.io";
 import http, { createServer } from "http";
 // import mainSocket from "./src/sockets/mainSocket";
@@ -20,7 +20,7 @@ const io = new Server(server, {
   },
 });
 
-loadInitialData().catch(console.error);
+// loadInitialData().catch(console.error);
 
 app.use(
   cors({
