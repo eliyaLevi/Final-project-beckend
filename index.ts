@@ -24,7 +24,7 @@ const io = new Server(server, {
 
 app.use(
   cors({
-    origin: "https://final-project-beckend.onrender.com",
+    origin: "https://eliyalevi.github.io",
     credentials: true,
   })
 );
